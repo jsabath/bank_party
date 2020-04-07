@@ -13,5 +13,20 @@ class Customer
         @@all
     end
 
+    def accounts
+        Account.all.select do |acct|
+            acct.customer == self
+        end
+    end
+
+    def banks
+        accounts.map do |acct|
+            acct.bank.name
+        end.uniq
+    end
     
+
+    def new_account number, balance, customer
+        Account.new(number, balance, self)
+    end
 end

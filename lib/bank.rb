@@ -12,4 +12,34 @@ class Bank
     def self.all
         @@all
     end
-end 
+
+    def accounts
+        Account.all.select do |acct|
+            acct.bank == self
+        end
+    end
+
+    def customers
+        accounts.map do |acct|
+            acct.customer
+        end
+    end
+
+    # def new_account number, balance, bank
+    #     Account.new(number, balance, self)
+    # end
+
+    def oldest_account
+        accounts.min_by do |acct|
+            acct.open_year
+        end
+    end
+
+#     def self.most(array)
+#         sum = 0
+#         array.each do |n|
+#             n += sum
+#         end
+#         return sum
+#     end
+# end 
