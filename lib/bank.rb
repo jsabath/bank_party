@@ -35,11 +35,13 @@ class Bank
         end
     end
 
-#     def self.most(array)
-#         sum = 0
-#         array.each do |n|
-#             n += sum
-#         end
-#         return sum
-#     end
-# end 
+    # def self.most
+    #     accounts.reduce do |sum, n|
+    #         sum += n
+    #     end
+    # end
+
+    def most
+        accounts.sort_by{|sum, n| n}.last
+    end
+end
